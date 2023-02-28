@@ -12,8 +12,8 @@
           cols="12"
           ref="focusableItem"
           data-testid="focusableItem"
-          style="background-color: green; height: 20px"
           tabindex="-1"
+          style="background-color: green; height: 20px"
         >
           <img
             v-if="surveyLogo"
@@ -53,7 +53,6 @@ export default defineComponent({
       setTimeout(() => {
         if (itemToFocus) {
           itemToFocus.focus();
-          itemToFocus.setAttribute("tabindex", "-2");
         }
       }, 500);
     },

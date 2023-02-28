@@ -1,4 +1,4 @@
-import { shallowMount } from "@vue/test-utils";
+import { shallowMount, mount } from "@vue/test-utils";
 import Test from "@/components/Test.vue";
 
 describe("Test Cmpt", () => {
@@ -6,27 +6,24 @@ describe("Test Cmpt", () => {
     jest.useFakeTimers();
   });
 
-  it("default focus", async () => {
-    const wrapper = await shallowMount(Test, {
-      attachTo: document.body, // ← added!
+  it("default focus after mounted nextTick", async () => {
+    const wrapper = shallowMount(Test, {
+      attachTo: document.body, // ← to support document.activeElement
     });
     // const wrapper = shallowMount(Test);
-    await wrapper.vm.$nextTick();
+    await wrapper.vm.$nextTick(); // after mounted nextTick
     const input = wrapper.find('[data-testid="tempFocusElement"]');
-    // expect(input).toBe(document.activeElement.tagName);
     expect(input.attributes("tabindex")).toBe("-1");
-    const input2 = wrapper.find('[data-testid="focusableItem"]');
-    expect(input2.attributes("tabindex")).toBe("-1");
+    expect(document.activeElement).toBe(input.element);
   });
   it("updated focus", async () => {
-    const wrapper = shallowMount(Test);
-    await wrapper.vm.$nextTick();
-    // expect(input).toBe(document.activeElement);
-    // let input = wrapper.find('[data-testid="focusableItem"]');
-
+    const wrapper = await mount(Test, {
+      attachTo: document.body, // ← to support document.activeElement
+    });
+    // const wrapper = shallowMount(Test);
+    await wrapper.vm.$nextTick(); // after mounted nextTick
     jest.advanceTimersByTime(2500);
-   //  await wrapper.vm.$nextTick();
     const input = wrapper.find('[data-testid="focusableItem"]');
-    expect(input.attributes("tabindex")).toBe("-2");
+    expect(document.activeElement).toBe(input.element);
   });
 });
