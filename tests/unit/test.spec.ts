@@ -25,7 +25,7 @@ describe("Test Cmpt", () => {
     // let input = wrapper.find('[data-testid="focusableItem"]');
 
     jest.advanceTimersByTime(2500);
-    await wrapper.vm.$nextTick();
+   //  await wrapper.vm.$nextTick();
     const input = wrapper.find('[data-testid="focusableItem"]');
     expect(input.attributes("tabindex")).toBe("-2");
   });
