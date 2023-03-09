@@ -58,6 +58,7 @@ export default defineComponent({
     },
   },
   mounted(): void {
+    // this.$nextTick is not necesary here but is for test purpose
     this.$nextTick(() => {
       this.setFocus();
     });

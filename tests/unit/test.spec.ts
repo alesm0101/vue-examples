@@ -17,7 +17,8 @@ describe("Test Cmpt", () => {
     expect(document.activeElement).toBe(input.element);
   });
   it("updated focus", async () => {
-    const wrapper = await mount(Test, {
+    const wrapper = mount(Test, {
+      // await mount(Test, {
       attachTo: document.body, // ← to support document.activeElement
     });
     // const wrapper = shallowMount(Test);
