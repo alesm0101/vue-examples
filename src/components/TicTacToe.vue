@@ -32,7 +32,9 @@
 </template>
 
 <script lang="ts">
-export default {
+import { defineComponent } from "vue";
+
+export default defineComponent({
   name: "App",
   data() {
     return {
@@ -89,7 +91,7 @@ export default {
     },
   },
   computed: {
-    hasWinner() {
+    hasWinner(): boolean {
       let hasWin = false;
       if (
         this.playerOne.length + this.playerTwo.length > 4 &&
@@ -106,14 +108,14 @@ export default {
       }
       return hasWin;
     },
-    status() {
+    status(): string {
       return `Next player: ${this.player}`;
     },
-    isFinished() {
+    isFinished(): boolean {
       return this.playerOne.length + this.playerTwo.length === 9;
     },
   },
-};
+});
 </script>
 <style>
 .message {
