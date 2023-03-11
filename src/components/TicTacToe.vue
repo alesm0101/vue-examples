@@ -117,7 +117,7 @@ export default defineComponent({
   },
 });
 </script>
-<style>
+<style scoped lang="scss">
 .message {
   text-align: center;
   padding: 1rem;
